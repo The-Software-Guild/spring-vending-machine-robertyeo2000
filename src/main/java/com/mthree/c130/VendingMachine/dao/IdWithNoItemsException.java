@@ -1,4 +1,4 @@
-package dao;
+package com.mthree.c130.VendingMachine.dao;
 
 public class IdWithNoItemsException extends Exception{
 

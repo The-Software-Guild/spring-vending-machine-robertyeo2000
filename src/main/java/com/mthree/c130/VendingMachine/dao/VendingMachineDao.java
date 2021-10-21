@@ -1,9 +1,8 @@
-package dao;
+package com.mthree.c130.VendingMachine.dao;
 
-import dto.Item;
-import service.NoItemInventoryException;
+import com.mthree.c130.VendingMachine.dto.Item;
+import com.mthree.c130.VendingMachine.service.NoItemInventoryException;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface VendingMachineDao {

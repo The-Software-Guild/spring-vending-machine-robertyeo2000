@@ -1,4 +1,4 @@
-package ui;
+package com.mthree.c130.VendingMachine.ui;
 
 import java.util.Scanner;
 

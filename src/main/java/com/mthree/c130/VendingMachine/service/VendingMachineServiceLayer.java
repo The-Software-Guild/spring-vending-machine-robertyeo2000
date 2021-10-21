@@ -1,9 +1,9 @@
-package service;
+package com.mthree.c130.VendingMachine.service;
 
-import dao.IdWithMultipleItemsException;
-import dao.IdWithNoItemsException;
-import dao.VendingMachineStockFileException;
-import dto.Item;
+import com.mthree.c130.VendingMachine.dao.IdWithMultipleItemsException;
+import com.mthree.c130.VendingMachine.dao.IdWithNoItemsException;
+import com.mthree.c130.VendingMachine.dao.VendingMachineStockFileException;
+import com.mthree.c130.VendingMachine.dto.Item;
 
 import java.math.BigDecimal;
 import java.util.List;

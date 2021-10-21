@@ -1,6 +1,6 @@
-package dao;
+package com.mthree.c130.VendingMachine.dao;
 
-import dto.Item;
+import com.mthree.c130.VendingMachine.dto.Item;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -15,6 +15,10 @@ public class VendingMachineDaoImpl implements VendingMachineDao {
 
     public VendingMachineDaoImpl() {
         ITEMS_FILE = "VendingMachineStock.txt";
+    }
+
+    public VendingMachineDaoImpl(String fileName) {
+        ITEMS_FILE = fileName;
     }
 
     @Override
@@ -45,7 +49,6 @@ public class VendingMachineDaoImpl implements VendingMachineDao {
         while (scanner.hasNextLine()) {
             currentLine = scanner.nextLine();
             currentLineSplit = currentLine.split(DELIMITER);
-            // TODO: 19/10/2021 Could/should check ID is unique, all ints are actually ints
             currentItem = new Item(Integer.parseInt(currentLineSplit[0]), currentLineSplit[1], new BigDecimal(currentLineSplit[2]));
             currentStock = Integer.parseInt(currentLineSplit[3]);
             itemStock.put(currentItem, currentStock);
@@ -84,6 +87,7 @@ public class VendingMachineDaoImpl implements VendingMachineDao {
     }
 
     @Override
+    //NOTE: Does NOT check that there are more than 0 of chosen item in stock
     public void reduceStockByOne(Item item) throws VendingMachineStockFileException {
         itemStock.put(item, itemStock.get(item) - 1);
         saveItemsToStorage();

@@ -1,4 +1,4 @@
-package service;
+package com.mthree.c130.VendingMachine.service;
 
 public class InsufficientFundsException extends Exception {
 

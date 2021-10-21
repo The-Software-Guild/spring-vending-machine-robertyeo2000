@@ -1,7 +1,7 @@
-package service;
+package com.mthree.c130.VendingMachine.service;
 
-import dao.*;
-import dto.Item;
+import com.mthree.c130.VendingMachine.dao.*;
+import com.mthree.c130.VendingMachine.dto.Item;
 
 import java.math.BigDecimal;
 import java.util.List;

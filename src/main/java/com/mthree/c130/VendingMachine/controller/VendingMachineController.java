@@ -1,14 +1,14 @@
-package controller;
+package com.mthree.c130.VendingMachine.controller;
 
-import dao.IdWithMultipleItemsException;
-import dao.IdWithNoItemsException;
-import dao.VendingMachineStockFileException;
-import dto.Item;
-import service.Coin;
-import service.InsufficientFundsException;
-import service.NoItemInventoryException;
-import service.VendingMachineServiceLayer;
-import ui.VendingMachineView;
+import com.mthree.c130.VendingMachine.dao.IdWithMultipleItemsException;
+import com.mthree.c130.VendingMachine.dao.IdWithNoItemsException;
+import com.mthree.c130.VendingMachine.dao.VendingMachineStockFileException;
+import com.mthree.c130.VendingMachine.dto.Item;
+import com.mthree.c130.VendingMachine.service.Coin;
+import com.mthree.c130.VendingMachine.service.InsufficientFundsException;
+import com.mthree.c130.VendingMachine.service.NoItemInventoryException;
+import com.mthree.c130.VendingMachine.service.VendingMachineServiceLayer;
+import com.mthree.c130.VendingMachine.ui.VendingMachineView;
 
 import java.util.List;
 
@@ -33,8 +33,7 @@ public class VendingMachineController {
             try {
                 buyItem();
             } catch (Exception e) {
-                // TODO: 19/10/2021 Get rid of this
-                System.out.println(e.getMessage());
+                view.displayErrorMessage(e);
             }
             giveChange();
         }

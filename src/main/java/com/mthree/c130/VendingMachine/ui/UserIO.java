@@ -1,4 +1,4 @@
-package ui;
+package com.mthree.c130.VendingMachine.ui;
 
 public interface UserIO {
     void print(String msg);

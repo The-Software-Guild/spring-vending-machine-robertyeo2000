@@ -1,4 +1,4 @@
-package dao;
+package com.mthree.c130.VendingMachine.dao;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,7 +7,15 @@ import java.time.LocalDateTime;
 
 public class VendingMachineAuditDaoImpl implements VendingMachineAuditDao{
 
-    public static final String AUDIT_FILE = "audit.txt";
+    public static String AUDIT_FILE;
+
+    public VendingMachineAuditDaoImpl() {
+        AUDIT_FILE = "audit.txt";
+    }
+
+    public VendingMachineAuditDaoImpl(String file) {
+        AUDIT_FILE = file;
+    }
 
     @Override
     public void writeAuditEntry(String entry) throws VendingMachineStockFileException {

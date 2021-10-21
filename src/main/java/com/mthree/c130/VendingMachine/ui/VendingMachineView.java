@@ -1,8 +1,8 @@
-package ui;
+package com.mthree.c130.VendingMachine.ui;
 
-import dao.VendingMachineStockFileException;
-import dto.Item;
-import service.Coin;
+import com.mthree.c130.VendingMachine.dao.VendingMachineStockFileException;
+import com.mthree.c130.VendingMachine.dto.Item;
+import com.mthree.c130.VendingMachine.service.Coin;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -55,5 +55,9 @@ public class VendingMachineView {
         String s = change.stream().map(Coin::getNAME).collect(Collectors.toList()).toString();
         s = s.replaceAll("[\\[\\]]", "");
         io.print("The coins given to you are " + s);
+    }
+
+    public void displayErrorMessage(Exception e) {
+        io.print(e.getMessage());
     }
 }
