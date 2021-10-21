@@ -1,29 +1,13 @@
 package com.mthree.c130.VendingMachine.service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
-public class VendingMachineMoney {
-    
-    private BigDecimal moneyOwed;
+public interface VendingMachineMoney {
 
-    public BigDecimal getMoneyOwed() {
-        return moneyOwed;
-    }
+    List<Coin> calculateChange();
 
-    public void setMoneyOwed(BigDecimal moneyOwed) {
-        this.moneyOwed = moneyOwed;
-    }
+    BigDecimal getMoneyOwed();
 
-    public List<Coin> calculateChange() {
-        List<Coin> coinsReturned = new ArrayList<>();
-        for (Coin coin : Coin.values()) {
-            while (coin.getVALUE().compareTo(moneyOwed) <=     0) {
-                setMoneyOwed(moneyOwed.subtract(coin.getVALUE()));
-                coinsReturned.add(coin);
-            }
-        }
-        return coinsReturned;
-    }
+    void setMoneyOwed(BigDecimal moneyOwed);
 }

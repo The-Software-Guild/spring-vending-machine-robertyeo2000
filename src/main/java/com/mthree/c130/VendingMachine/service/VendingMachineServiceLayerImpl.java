@@ -34,11 +34,11 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
         BigDecimal cost = item.getCost();
         int stock = dao.getStock(item);
         BigDecimal moneyOwed = money.getMoneyOwed();
-        if (cost.compareTo(moneyOwed) > 0) {
-            throw new InsufficientFundsException("Item costs £" + cost + ", only provided £" + moneyOwed);
-        }
         if (stock <= 0) {
             throw new NoItemInventoryException("Item: " + item + " is out of stock");
+        }
+        if (cost.compareTo(moneyOwed) > 0) {
+            throw new InsufficientFundsException("Item costs £" + cost + ", only provided £" + moneyOwed);
         }
         dao.reduceStockByOne(item);
         money.setMoneyOwed(moneyOwed.subtract(cost));
