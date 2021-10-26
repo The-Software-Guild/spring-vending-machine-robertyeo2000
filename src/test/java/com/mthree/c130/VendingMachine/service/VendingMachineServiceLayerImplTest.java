@@ -1,12 +1,11 @@
 package com.mthree.c130.VendingMachine.service;
 
-import com.mthree.c130.VendingMachine.dao.IdWithNoItemsException;
-import com.mthree.c130.VendingMachine.dao.VendingMachineAuditDao;
-import com.mthree.c130.VendingMachine.dao.VendingMachineAuditDaoImpl;
-import com.mthree.c130.VendingMachine.dao.VendingMachineDao;
+import com.mthree.c130.VendingMachine.dao.*;
 import com.mthree.c130.VendingMachine.dto.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,11 +16,8 @@ class VendingMachineServiceLayerImplTest {
     private VendingMachineServiceLayer service;
 
     public VendingMachineServiceLayerImplTest() {
-        VendingMachineDao dao = new VendingMachineDaoStubImpl();
-        VendingMachineAuditDao auditDao = new VendingMachineAuditDaoImpl();
-        VendingMachineMoney money = new VendingMachineMoneyStubImpl();
-
-        service = new VendingMachineServiceLayerImpl(dao, money, auditDao);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("serviceLayer", VendingMachineServiceLayer.class);
     }
 
     @BeforeEach

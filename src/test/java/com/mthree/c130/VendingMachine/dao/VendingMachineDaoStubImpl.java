@@ -1,4 +1,4 @@
-package com.mthree.c130.VendingMachine.service;
+package com.mthree.c130.VendingMachine.dao;
 
 import com.mthree.c130.VendingMachine.dao.IdWithMultipleItemsException;
 import com.mthree.c130.VendingMachine.dao.IdWithNoItemsException;

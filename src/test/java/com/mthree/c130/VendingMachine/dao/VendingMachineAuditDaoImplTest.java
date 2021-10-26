@@ -1,9 +1,11 @@
 package com.mthree.c130.VendingMachine.dao;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -13,6 +15,13 @@ class VendingMachineAuditDaoImplTest {
 
     String testAuditFile = "testAudit.txt";
     VendingMachineAuditDao testAuditDao = new VendingMachineAuditDaoImpl(testAuditFile);
+
+    @BeforeEach
+    void setUp() throws Exception {
+        PrintWriter writer = new PrintWriter(testAuditFile);
+        writer.print("");
+        writer.close();
+    }
 
     @Test
     void writeAuditEntry() throws Exception {
