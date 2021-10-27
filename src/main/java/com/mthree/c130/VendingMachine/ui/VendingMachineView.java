@@ -3,16 +3,20 @@ package com.mthree.c130.VendingMachine.ui;
 import com.mthree.c130.VendingMachine.dao.VendingMachineStockFileException;
 import com.mthree.c130.VendingMachine.dto.Item;
 import com.mthree.c130.VendingMachine.service.Coin;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class VendingMachineView {
 
     private final UserIO io;
 
+    @Autowired
     public VendingMachineView(UserIO io) {
         this.io = io;
     }

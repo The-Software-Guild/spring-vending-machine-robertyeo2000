@@ -1,10 +1,8 @@
 package com.mthree.c130.VendingMachine.dao;
 
-import com.mthree.c130.VendingMachine.dao.IdWithMultipleItemsException;
-import com.mthree.c130.VendingMachine.dao.IdWithNoItemsException;
-import com.mthree.c130.VendingMachine.dao.VendingMachineDao;
-import com.mthree.c130.VendingMachine.dao.VendingMachineStockFileException;
 import com.mthree.c130.VendingMachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,6 +13,7 @@ public class VendingMachineDaoStubImpl implements VendingMachineDao {
     public Item itemInStock;
     public Item itemOutOfStock;
 
+    @Autowired
     public VendingMachineDaoStubImpl() {
         itemInStock = new Item(1, "Coca-Cola", new BigDecimal("1.50"));
         itemOutOfStock = new Item(2, "Crisps", new BigDecimal("0.50"));

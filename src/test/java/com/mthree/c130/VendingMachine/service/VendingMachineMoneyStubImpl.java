@@ -2,6 +2,7 @@ package com.mthree.c130.VendingMachine.service;
 
 import com.mthree.c130.VendingMachine.service.Coin;
 import com.mthree.c130.VendingMachine.service.VendingMachineMoney;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;

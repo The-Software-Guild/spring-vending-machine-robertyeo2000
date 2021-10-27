@@ -1,10 +1,13 @@
 package com.mthree.c130.VendingMachine.dao;
 
+import org.springframework.stereotype.Component;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 
+@Component
 public class VendingMachineAuditDaoImpl implements VendingMachineAuditDao{
 
     public static String AUDIT_FILE;

@@ -9,14 +9,18 @@ import com.mthree.c130.VendingMachine.service.InsufficientFundsException;
 import com.mthree.c130.VendingMachine.service.NoItemInventoryException;
 import com.mthree.c130.VendingMachine.service.VendingMachineServiceLayer;
 import com.mthree.c130.VendingMachine.ui.VendingMachineView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class VendingMachineController {
 
     private final VendingMachineView view;
     private final VendingMachineServiceLayer service;
 
+    @Autowired
     public VendingMachineController(VendingMachineView view, VendingMachineServiceLayer service) {
         this.view = view;
         this.service = service;

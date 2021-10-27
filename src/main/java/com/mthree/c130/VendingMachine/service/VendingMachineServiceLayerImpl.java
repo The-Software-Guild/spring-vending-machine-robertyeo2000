@@ -2,16 +2,20 @@ package com.mthree.c130.VendingMachine.service;
 
 import com.mthree.c130.VendingMachine.dao.*;
 import com.mthree.c130.VendingMachine.dto.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Component
 public class VendingMachineServiceLayerImpl implements VendingMachineServiceLayer{
 
     private final VendingMachineDao dao;
     private final VendingMachineMoney money;
     private final VendingMachineAuditDao auditDao;
 
+    @Autowired
     public VendingMachineServiceLayerImpl(VendingMachineDao dao, VendingMachineMoney money, VendingMachineAuditDao auditDao) {
         this.dao = dao;
         this.money = money;

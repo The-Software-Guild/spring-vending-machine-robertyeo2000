@@ -1,7 +1,10 @@
 package com.mthree.c130.VendingMachine.ui;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Scanner;
 
+@Component
 public class UserIOImpl implements UserIO {
 
     @Override

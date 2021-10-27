@@ -4,25 +4,61 @@ import com.mthree.c130.VendingMachine.dao.*;
 import com.mthree.c130.VendingMachine.dto.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 class VendingMachineServiceLayerImplTest {
+
+    @Mock
+    private VendingMachineDao dao;
+    @Mock
+    private VendingMachineMoney money;
 
     private VendingMachineServiceLayer service;
 
-    public VendingMachineServiceLayerImplTest() {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-        service = ctx.getBean("serviceLayer", VendingMachineServiceLayer.class);
-    }
-
     @BeforeEach
-    void setUp() {
+    void setUp() throws IdWithNoItemsException, IdWithMultipleItemsException {
+        VendingMachineAuditDao auditDao = new VendingMachineAuditDaoImpl();
 
+        MockitoAnnotations.openMocks(this);
+
+        when(money.getMoneyOwed()).thenReturn(new BigDecimal("1.00"));
+        when(money.calculateChange()).thenReturn(List.of(Coin.ONE_POUND));
+
+        Item itemInStock = new Item(1, "Coca-Cola", new BigDecimal("1.50"));
+        Item itemOutOfStock = new Item(2, "Crisps", new BigDecimal("0.50"));
+        when(dao.getAllItemsInStock()).thenReturn(List.of(itemInStock));
+        when(dao.getAllItems()).thenReturn(List.of(itemInStock, itemOutOfStock));
+        when(dao.getItem(anyInt())).thenAnswer(
+                invocationOnMock -> {
+                    int argument = invocationOnMock.getArgument(0);
+                    if (argument == 1) {
+                        return itemInStock;
+                    } else if (argument == 2) {
+                        return itemOutOfStock;
+                    } else {
+                        return null;
+                    }
+                }
+        );
+        when(dao.getStock(any(Item.class))).thenAnswer(
+                invocationOnMock -> {
+                    Item argument = invocationOnMock.getArgument(0);
+                    if (argument.equals(itemInStock)) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                }
+        );
+
+        service = new VendingMachineServiceLayerImpl(dao, money, auditDao);
     }
 
     @Test
@@ -55,6 +91,7 @@ class VendingMachineServiceLayerImplTest {
 
     @Test
     void setMoneyOwed() {
+        // or this
     }
 
     @Test
